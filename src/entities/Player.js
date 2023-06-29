@@ -39,7 +39,7 @@ export class Player extends RectEntity {
     }
 
     die() {
-        // this.isAlive = false;
+        this.isAlive = false;
     }
 
     handleRespawn() {
