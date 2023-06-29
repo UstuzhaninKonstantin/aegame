@@ -39,13 +39,14 @@ export function createEntities() {
             new Enemy(x, y, w, h, "#123456")
         );
     }
-    
+    let CHUNK = 2500;
     interval = setInterval(() => {
-        let CHUNK = 1500;
-        for (let i = 0; i < 10; i++) {
+        console.log(CHUNK);
+        console.log(player.speedx);
+        for (let i = 0; i < 10 + counter / 2; i++) {
             const x = randomNumber(canvas.width + counter * CHUNK, canvas.width + CHUNK * (counter + 1));
             const h = randomNumber(10, 50 + counter); 
-            const y = randomNumber(0, canvas.height - h) ;
+            const y = randomNumber(0, canvas.height - h);
             const w = randomNumber(10, 50 + counter);
             if (Math.random() < 0.05) {
                 const portalx = randomNumber(canvas.width + counter * CHUNK, CHUNK * (counter + 1));
@@ -55,7 +56,6 @@ export function createEntities() {
                     addEntity(new Portal(portalx, 0, 20, canvas.height, "blue", "+"));
                 }
             }
-            CHUNK *= 1.0001;
             addEntity(
                 new Enemy(x, y, w, h, "#123456")
             );
