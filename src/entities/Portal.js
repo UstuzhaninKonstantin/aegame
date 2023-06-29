@@ -17,9 +17,9 @@ export class Portal extends RectEntity {
     onCollision() {
         if (this.collisionWithPlayer()) {
             if (this.mode === "+") {
-                player.speedy = Math.abs(player.speedy)
+                player.originalspeedy = Math.abs(player.originalspeedy);
             } else {
-                player.speedy = -1 * Math.abs(player.speedy);
+                player.originalspeedy = -1 * Math.abs(player.originalspeedy);
             }
         }
     }

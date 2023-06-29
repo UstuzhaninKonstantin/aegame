@@ -10,6 +10,7 @@ export class Player extends RectEntity {
         this.speedx = speedx;
         this.speedy = speedy;
         this.isAlive = true;
+        this.originalspeedy = speedy;
     }
 
     move() {
@@ -19,6 +20,11 @@ export class Player extends RectEntity {
 
         if (keysPressed["KeyS"] || keysPressed["ArrowDown"]) {
             this.y += this.speedy;
+        }
+        if (keysPressed["ShiftLeft"] || keysPressed["ShiftRight"]) {
+            this.speedy = this.originalspeedy * 2;
+        } else {
+            this.speedy = this.originalspeedy;
         }
         this.x += this.speedx;
         this.speedx *= 1.0001;
