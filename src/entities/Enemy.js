@@ -1,5 +1,6 @@
 import { RectEntity } from "./Entities.js";
-import { player } from "../entities.js";
+import { player, removeEntity } from "../entities.js";
+import { cx } from "../camera.js";
 
 export class Enemy extends RectEntity {
     constructor(x, y, w, h, color) {
@@ -11,7 +12,6 @@ export class Enemy extends RectEntity {
             this.x + this.w > player.x &&
             this.y < player.y + player.h &&
             this.h + this.y > player.y;
-    
     }
 
     onCollision() {

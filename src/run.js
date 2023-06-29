@@ -4,6 +4,7 @@ import { createEntities, entities } from "./entities.js";
 export function run() {
     createEntities();
     setInterval(() => { 
+        console.log(entities.length);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (const entity of entities) {
             entity.update();

@@ -1,5 +1,6 @@
 import { ctx } from "../canvas.js"; 
 import { cx } from "../camera.js";
+import { removeEntity } from "../entities.js";
 
 export class Entity {
     constructor() {

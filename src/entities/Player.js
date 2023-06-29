@@ -21,6 +21,7 @@ export class Player extends RectEntity {
             this.y += this.speedy;
         }
         this.x += this.speedx;
+        this.speedx *= 1.0001;
         this.outOfBounds();
     }
 
@@ -38,7 +39,7 @@ export class Player extends RectEntity {
     }
 
     die() {
-        this.isAlive = false;
+        // this.isAlive = false;
     }
 
     handleRespawn() {

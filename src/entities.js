@@ -5,9 +5,17 @@ import { Portal } from "./entities/Portal.js";
 
 export let entities = [];
 export let player;
+let interval;
 
 export function addEntity(entity) {
     entities.push(entity);
+}
+
+export function removeEntity(entity) {
+    const index = entities.indexOf(entity);
+    if (index != -1) {
+        entities.splice(index, 1);
+    }
 }
 
 export function setPlayer(p) {
@@ -20,12 +28,10 @@ function randomNumber(min, max) {
 }
 
 export function createEntities() {
-    const player = new Player(100, canvas.height / 2, 50, 50, "#df134a", 10, 10);
-    addEntity(new Portal(3000, 0, 20, canvas.height, "yellow", "-"));
-    addEntity(new Portal(5000, 0, 20, canvas.height, "blue", "+"));
-    
-    for (let i = 0; i < 100; i++) {
-        const x = randomNumber(1600, 16000);
+    let counter = 1;
+    const player = new Player(100, canvas.height / 2, 20, 20, "#df134a", 10, 10);
+    for (let i = 0; i < 10; i++) {
+        const x = randomNumber(canvas.width, canvas.width + 1500);
         const h = randomNumber(10, 50); 
         const y = randomNumber(0, canvas.height - h) ;
         const w = randomNumber(10, 50);
@@ -33,11 +39,35 @@ export function createEntities() {
             new Enemy(x, y, w, h, "#123456")
         );
     }
+    
+    interval = setInterval(() => {
+        let CHUNK = 1500;
+        for (let i = 0; i < 10; i++) {
+            const x = randomNumber(canvas.width + counter * CHUNK, canvas.width + CHUNK * (counter + 1));
+            const h = randomNumber(10, 50 + counter); 
+            const y = randomNumber(0, canvas.height - h) ;
+            const w = randomNumber(10, 50 + counter);
+            if (Math.random() < 0.05) {
+                const portalx = randomNumber(canvas.width + counter * CHUNK, CHUNK * (counter + 1));
+                if (Math.random() < 0.5) {                 
+                    addEntity(new Portal(portalx, 0, 20, canvas.height, "yellow", "-"));
+                } else { 
+                    addEntity(new Portal(portalx, 0, 20, canvas.height, "blue", "+"));
+                }
+            }
+            CHUNK *= 1.0001;
+            addEntity(
+                new Enemy(x, y, w, h, "#123456")
+            );
+        }
+        counter += 1;
+    }, 2000);
     setPlayer(player);
 }
 
 
 export function deleteEntities() {
+    clearInterval(interval);
     entities = [];
     player = undefined;
 }
