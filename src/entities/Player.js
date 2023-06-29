@@ -1,5 +1,5 @@
 import { keysPressed } from "../events.js";
-import { RectEntity } from "./Entity.js";
+import { RectEntity } from "./Entities.js";
 import { camera } from "../camera.js";
 
 export class Player extends RectEntity {
@@ -17,6 +17,7 @@ export class Player extends RectEntity {
         if (keysPressed["KeyS"] || keysPressed["ArrowDown"]) {
             this.y += this.speedy;
         }
+        this.x += this.speedx;
     }
 
     setCamera() {
@@ -25,5 +26,6 @@ export class Player extends RectEntity {
 
     update() {
         this.move();
+        this.setCamera();
     }
 }

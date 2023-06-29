@@ -1,4 +1,5 @@
 import { ctx } from "../canvas.js"; 
+import { cx } from "../camera.js";
 
 export class Entity {
     constructor() {
@@ -22,7 +23,7 @@ export class RectEntity extends Entity {
 
     draw() {
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.w, this.h);
+        ctx.fillRect(cx(this.x), this.y, this.w, this.h);
     }
 }
 
