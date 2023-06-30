@@ -11,6 +11,7 @@ export class Player extends RectEntity {
         this.speedy = speedy;
         this.isAlive = true;
         this.originalspeedy = speedy;
+        this.points = 0;
     }
 
     move() {
@@ -29,6 +30,7 @@ export class Player extends RectEntity {
         this.x += this.speedx;
         this.speedx *= 1.0001;
         this.outOfBounds();
+        this.setCamera();
     }
 
     outOfBounds() {
@@ -45,7 +47,7 @@ export class Player extends RectEntity {
     }
 
     die() {
-        // this.isAlive = false;
+        this.isAlive = false;
     }
 
     handleRespawn() {
@@ -56,8 +58,8 @@ export class Player extends RectEntity {
 
     update() {
         if (this.isAlive) {
+            this.points += 1;
             this.move();
-            this.setCamera();
         } else {
             this.handleRespawn();
         }
@@ -66,6 +68,10 @@ export class Player extends RectEntity {
     draw() {
         if (this.isAlive) {
             super.draw();
+            ctx.fillStyle = "black";
+            ctx.font = "30px sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText(`Points: ${this.points}`, 70, 30);
         } else {
             ctx.fillStyle = "yellow";
             ctx.fillRect(cx(this.x), this.y, this.w, this.h);
@@ -73,6 +79,7 @@ export class Player extends RectEntity {
             ctx.font = "30px sans-serif";
             ctx.textAlign = "center";
             ctx.fillText("You died. Press R to respawn", canvas.width / 2, canvas.height / 1.5);
+            ctx.fillText(`Points: ${this.points}`, canvas.width / 2, canvas.height / 1.4);
         }
     }
 }

@@ -41,8 +41,6 @@ export function createEntities() {
     }
     let CHUNK = 2500;
     interval = setInterval(() => {
-        console.log(CHUNK);
-        console.log(player.speedx);
         for (let i = 0; i < 10 + counter / 2; i++) {
             const x = randomNumber(canvas.width + counter * CHUNK, canvas.width + CHUNK * (counter + 1));
             const h = randomNumber(10, 50 + counter); 
