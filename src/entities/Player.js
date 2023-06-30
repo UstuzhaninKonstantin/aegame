@@ -71,7 +71,7 @@ export class Player extends RectEntity {
             ctx.fillStyle = "black";
             ctx.font = "30px sans-serif";
             ctx.textAlign = "center";
-            ctx.fillText(`Points: ${this.points}`, 70, 30);
+            ctx.fillText(`Points: ${this.points}`, 100, 50);
         } else {
             ctx.fillStyle = "yellow";
             ctx.fillRect(cx(this.x), this.y, this.w, this.h);
