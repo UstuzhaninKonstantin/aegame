@@ -2,8 +2,9 @@ import { canvas } from "./canvas.js";
 import { Enemy } from "./entities/Enemy.js";
 import { Player } from "./entities/Player.js";
 import { Portal } from "./entities/Portal.js";
-import { Powerup } from "./entities/powerups/Powerup.js";
 import { SizePowerup } from "./entities/powerups/SizePowerup.js";
+import { SpeedPowerup } from "./entities/powerups/SpeedPowerup.js";
+import { ImmortalPowerup } from "./entities/powerups/ImmortalPowerup.js";
 
 export let entities = [];
 export let player;
@@ -56,7 +57,14 @@ export function createEntities() {
                     addEntity(new Portal(x, 0, 20, canvas.height, "blue", "+"));
                 }
             } else if (Math.random() < 0.05) {
-                addEntity(new SizePowerup(x, y, 50, 50, "green", 300));
+                const rnd = Math.random();
+                if (rnd < 0.3) {
+                    addEntity(new SizePowerup(x, y, 50, 50, "green", 300));
+                } else if (rnd < 0.6) {
+                    addEntity(new SpeedPowerup(x, y, 50, 50, "green", 300));
+                } else {
+                    addEntity(new ImmortalPowerup(x, y, 50, 50, "green", 300));
+                }
             } else {
                 addEntity(
                     new Enemy(x, y, w, h, "#123456")

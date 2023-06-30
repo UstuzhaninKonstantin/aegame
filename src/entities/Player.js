@@ -11,9 +11,11 @@ export class Player extends RectEntity {
         this.speedx = speedx;
         this.speedy = speedy;
         this.isAlive = true;
+        this.originalSpeedx = speedx;
         this.originalspeedy = speedy;
         this.points = 0;
         this.powerup = undefined;
+        this.immortal = false;
     }
 
     move() {
@@ -49,8 +51,10 @@ export class Player extends RectEntity {
     }
 
     die() {
-        this?.powerup?.afterPowerup();
-        this.isAlive = false;
+        if (!this.immortal) {
+            this?.powerup?.afterPowerup();
+            this.isAlive = false;
+        }
     }
 
     handleRespawn() {
@@ -70,7 +74,8 @@ export class Player extends RectEntity {
 
     draw() {
         if (this.isAlive) {
-            super.draw();
+            ctx.fillStyle = this.immortal ? "#9e9595": this.color;
+            ctx.fillRect(cx(this.x), this.y, this.w, this.h);
             ctx.fillStyle = "black";
             ctx.font = "30px sans-serif";
             ctx.textAlign = "center";

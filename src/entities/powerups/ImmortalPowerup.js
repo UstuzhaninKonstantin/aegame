@@ -1,18 +1,16 @@
 import { player } from "../../entities.js";
 import { Powerup } from "./Powerup.js";
 
-export class SizePowerup extends Powerup {
+export class ImmortalPowerup extends Powerup {
     constructor(x, y, w, h, color, duration) {
         super(x, y, w, h, color, duration);
     }
 
     powerup() {
-        player.w = player.originalSize.w / 2;
-        player.h = player.originalSize.h / 2;
+        player.immortal = true;
     }
 
     afterPowerup() {
-        player.w = player.originalSize.w;
-        player.h = player.originalSize.h;
+        player.immortal = false;
     }
 }
