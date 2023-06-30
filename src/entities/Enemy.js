@@ -1,4 +1,4 @@
-import { RectEntity } from "./Entities.js";
+import { RectEntity } from "./Entity.js";
 import { player, removeEntity } from "../entities.js";
 import { cx } from "../camera.js";
 

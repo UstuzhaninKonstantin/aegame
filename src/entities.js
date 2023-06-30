@@ -2,13 +2,14 @@ import { canvas } from "./canvas.js";
 import { Enemy } from "./entities/Enemy.js";
 import { Player } from "./entities/Player.js";
 import { Portal } from "./entities/Portal.js";
-import { Powerup, PowerupDuration } from "./entities/Powerup.js";
+import { Powerup } from "./entities/powerups/Powerup.js";
+import { SizePowerup } from "./entities/powerups/SizePowerup.js";
 
 export let entities = [];
 export let player;
 let interval;
 
-export function addEntity(entity) {
+export function addEntity(entity) { 
     entities.push(entity);
 }
 
@@ -40,16 +41,7 @@ export function createEntities() {
             new Enemy(x, y, w, h, "#123456")
         );
     }
-    // addEntity(
-    //     new PowerupDuration(
-    //         20, // x 
-    //         canvas.height / 1.1, // y 
-    //         300, // w
-    //         50, // h
-    //         "green", // color
-    //         1000 // duration
-    //     )
-    // );
+
     let CHUNK = 2500;
     interval = setInterval(() => {
         for (let i = 0; i < 10 + counter / 2; i++) {
@@ -64,7 +56,7 @@ export function createEntities() {
                     addEntity(new Portal(x, 0, 20, canvas.height, "blue", "+"));
                 }
             } else if (Math.random() < 0.05) {
-                addEntity(new Powerup(x, y, 50, 50, "green", 1000));
+                addEntity(new SizePowerup(x, y, 50, 50, "green", 300));
             } else {
                 addEntity(
                     new Enemy(x, y, w, h, "#123456")

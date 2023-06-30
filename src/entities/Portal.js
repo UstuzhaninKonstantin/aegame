@@ -1,4 +1,4 @@
-import { RectEntity } from "./Entities.js";
+import { RectEntity } from "./Entity.js";
 import { player } from "../entities.js";
 
 export class Portal extends RectEntity {

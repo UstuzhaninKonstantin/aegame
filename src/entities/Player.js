@@ -1,5 +1,5 @@
 import { keysPressed } from "../events.js";
-import { RectEntity } from "./Entities.js";
+import { RectEntity } from "./Entity.js";
 import { camera, cx } from "../camera.js";
 import { canvas, ctx } from "../canvas.js";
 import { restart } from "../entities.js";
@@ -7,11 +7,13 @@ import { restart } from "../entities.js";
 export class Player extends RectEntity {
     constructor(x, y, w, h, color, speedx, speedy) {
         super(x, y, w, h, color);
+        this.originalSize = {w, h};
         this.speedx = speedx;
         this.speedy = speedy;
         this.isAlive = true;
         this.originalspeedy = speedy;
         this.points = 0;
+        this.powerup = undefined;
     }
 
     move() {
@@ -47,6 +49,7 @@ export class Player extends RectEntity {
     }
 
     die() {
+        this?.powerup?.afterPowerup();
         this.isAlive = false;
     }
 
