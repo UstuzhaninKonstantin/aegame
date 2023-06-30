@@ -2,7 +2,7 @@ import { keysPressed } from "../events.js";
 import { RectEntity } from "./Entity.js";
 import { camera, cx } from "../camera.js";
 import { canvas, ctx } from "../canvas.js";
-import { restart } from "../entities.js";
+import { restart, stopSpawningEntities } from "../entities.js";
 
 export class Player extends RectEntity {
     constructor(x, y, w, h, color, speedx, speedy) {
@@ -53,6 +53,7 @@ export class Player extends RectEntity {
     die() {
         if (!this.immortal) {
             this?.powerup?.afterPowerup();
+            stopSpawningEntities();
             this.isAlive = false;
         }
     }

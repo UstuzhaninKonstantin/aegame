@@ -1,6 +1,5 @@
 import { ctx } from "../canvas.js"; 
 import { cx } from "../camera.js";
-import { removeEntity } from "../entities.js";
 
 export class Entity {
     constructor() {
@@ -27,20 +26,3 @@ export class RectEntity extends Entity {
         ctx.fillRect(cx(this.x), this.y, this.w, this.h);
     }
 }
-
-// export class CircleEntity extends Entity {
-//     constructor(x, y) {
-//         super();
-//         this.x = x;
-//         this.y = y;
-//     }
-
-//     draw() {
-//         ctx.beginPath()
-//         ctx.arc(x, y, radius, 0, 2 * Math.PI, false)
-//         ctx.fillStyle = fill
-//         ctx.fill()
-//         ctx.strokeStyle = stroke
-//         ctx.stroke()
-//     }
-// }

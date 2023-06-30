@@ -1,5 +1,6 @@
 import { RectEntity } from "./Entity.js";
 import { player } from "../entities.js";
+import { ctx } from "../canvas.js";
 
 export class Portal extends RectEntity {
     constructor(x, y, w, h, color, mode) {
@@ -26,5 +27,11 @@ export class Portal extends RectEntity {
 
     update() {
         this.onCollision();
+    }
+
+    draw() {
+        ctx.globalAlpha = 0.5;
+        super.draw();
+        ctx.globalAlpha = 1;
     }
 }

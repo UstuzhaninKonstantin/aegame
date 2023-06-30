@@ -1,7 +1,8 @@
+import { ctx } from "../canvas.js";
+import { player, removeEntity } from "../entities.js";
 import { RectEntity } from "./Entity.js";
-import { player } from "../entities.js";
 
-export class Enemy extends RectEntity {
+export class Coin extends RectEntity {
     constructor(x, y, w, h, color) {
         super(x, y, w, h, color);
     }
@@ -15,11 +16,18 @@ export class Enemy extends RectEntity {
 
     onCollision() {
         if (this.collisionWithPlayer()) {
-            player.die();
+            player.points += 300;
+            removeEntity(this);
         }
     }
 
     update() {
         this.onCollision();
+    }
+
+    draw() {
+        ctx.globalAlpha = 0.5;
+        super.draw();
+        ctx.globalAlpha = 1;
     }
 }

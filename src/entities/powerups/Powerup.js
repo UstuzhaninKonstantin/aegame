@@ -1,3 +1,4 @@
+import { ctx } from "../../canvas.js";
 import { addEntity, player } from "../../entities.js";
 import { RectEntity } from "../Entity.js";
 import { PowerupDuration } from "./PowerupDuration.js";
@@ -43,5 +44,11 @@ export class Powerup extends RectEntity {
 
     update() {
         this.onCollision();
+    }
+
+    draw() {
+        ctx.globalAlpha = 0.5;
+        super.draw();
+        ctx.globalAlpha = 1;
     }
 }

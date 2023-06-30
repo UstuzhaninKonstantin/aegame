@@ -5,6 +5,7 @@ import { Portal } from "./entities/Portal.js";
 import { SizePowerup } from "./entities/powerups/SizePowerup.js";
 import { SpeedPowerup } from "./entities/powerups/SpeedPowerup.js";
 import { ImmortalPowerup } from "./entities/powerups/ImmortalPowerup.js";
+import { Coin } from "./entities/Coin.js";
 
 export let entities = [];
 export let player;
@@ -51,12 +52,12 @@ export function createEntities() {
             const y = randomNumber(0, canvas.height - h);
             const w = randomNumber(10, 50 + counter);
             if (Math.random() < 0.05) {
-                if (Math.random() < 0.5) {                 
+                if (Math.random() < 0.3) {                 
                     addEntity(new Portal(x, 0, 20, canvas.height, "yellow", "-"));
                 } else { 
                     addEntity(new Portal(x, 0, 20, canvas.height, "blue", "+"));
                 }
-            } else if (Math.random() < 0.05) {
+            } else if (Math.random() < 0.01) {
                 const rnd = Math.random();
                 if (rnd < 0.3) {
                     addEntity(new SizePowerup(x, y, 50, 50, "green", 300));
@@ -65,6 +66,8 @@ export function createEntities() {
                 } else {
                     addEntity(new ImmortalPowerup(x, y, 50, 50, "green", 300));
                 }
+            } else if (Math.random() < 0.05) {
+                addEntity(new Coin(x, y, 30, 60, "orange"));
             } else {
                 addEntity(
                     new Enemy(x, y, w, h, "#123456")
@@ -76,6 +79,9 @@ export function createEntities() {
     setPlayer(player);
 }
 
+export function stopSpawningEntities() {
+    clearInterval(interval);
+}
 
 export function deleteEntities() {
     clearInterval(interval);
