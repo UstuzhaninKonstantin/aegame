@@ -33,6 +33,7 @@ export class Player extends RectEntity {
         }
         this.x += this.speedx;
         this.speedx *= 1.0001;
+        this.speedy *= 1.0001;
         this.outOfBounds();
         this.setCamera();
     }
