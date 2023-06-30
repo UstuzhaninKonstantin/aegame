@@ -1,13 +1,15 @@
+import { cx } from "../../camera.js";
 import { ctx } from "../../canvas.js";
 import { addEntity, player } from "../../entities.js";
 import { RectEntity } from "../Entity.js";
 import { PowerupDuration } from "./PowerupDuration.js";
 
 export class Powerup extends RectEntity {
-    constructor(x, y, w, h, color, duration) {
+    constructor(x, y, w, h, color, duration, image) {
         super(x, y, w, h, color);
         this.duration = duration;
         this.powerupDuration = undefined;
+        this.image = undefined;
     }
 
     collisionWithPlayer() {
@@ -47,8 +49,13 @@ export class Powerup extends RectEntity {
     }
 
     draw() {
-        ctx.globalAlpha = 0.5;
-        super.draw();
-        ctx.globalAlpha = 1;
+        console.log(this.image);
+        if (!this.image.loaded) {
+            ctx.globalAlpha = 0.5;
+            super.draw();
+            ctx.globalAlpha = 1;
+        } else {
+            ctx.drawImage(this.image, cx(this.x), this.y);
+        }
     }
 }

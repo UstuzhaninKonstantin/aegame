@@ -6,6 +6,7 @@ import { SizePowerup } from "./entities/powerups/SizePowerup.js";
 import { SpeedPowerup } from "./entities/powerups/SpeedPowerup.js";
 import { ImmortalPowerup } from "./entities/powerups/ImmortalPowerup.js";
 import { Coin } from "./entities/Coin.js";
+import { sizePowerupImage } from "./images.js";
 
 export let entities = [];
 export let player;
@@ -59,6 +60,7 @@ export function createEntities() {
                 }
             } else if (Math.random() < 0.01) {
                 const rnd = Math.random();
+                console.log(sizePowerupImage);
                 if (rnd < 0.3) {
                     addEntity(new SizePowerup(x, y, 50, 50, "green", 300));
                 } else if (rnd < 0.6) {
