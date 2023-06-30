@@ -1,10 +1,13 @@
+import { cx } from "../camera.js";
 import { ctx } from "../canvas.js";
 import { player, removeEntity } from "../entities.js";
+import { coinImage } from "../images.js";
 import { RectEntity } from "./Entity.js";
 
 export class Coin extends RectEntity {
     constructor(x, y, w, h, color) {
         super(x, y, w, h, color);
+        this.image = coinImage;
     }
 
     collisionWithPlayer() {
@@ -26,8 +29,12 @@ export class Coin extends RectEntity {
     }
 
     draw() {
-        ctx.globalAlpha = 0.5;
-        super.draw();
-        ctx.globalAlpha = 1;
+        if (!this.image.loaded) {
+            ctx.globalAlpha = 0.5;
+            super.draw();
+            ctx.globalAlpha = 1;
+        } else {
+            ctx.drawImage(this.image, cx(this.x), this.y);
+        }
     }
 }

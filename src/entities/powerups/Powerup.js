@@ -49,7 +49,6 @@ export class Powerup extends RectEntity {
     }
 
     draw() {
-        console.log(this.image);
         if (!this.image.loaded) {
             ctx.globalAlpha = 0.5;
             super.draw();

@@ -13,6 +13,11 @@ immortalPowerupImage.src = "../../../img/immortal_powerup.png";
 immortalPowerupImage.onload = () => {
     immortalPowerupImage.loaded = true;
 }
+export const coinImage = new Image(50, 50);
+coinImage.src = "../../../img/coin.png";
+coinImage.onload = () => {
+    coinImage.loaded = true;
+}
 
 
 
